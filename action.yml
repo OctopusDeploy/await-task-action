@@ -1,0 +1,34 @@
+name: 'Wait/watch an execution task in Octopus Deploy'
+description: 'GitHub Action to wait/watch an execution task in Octopus Deploy'
+author: 'Octopus Deploy'
+branding:
+  color: 'blue'
+  icon: 'package'
+
+inputs:
+  server_task_id:
+    description: 'The execution task id to watch/wait for.'
+    required: true
+  api_key:
+    description: 'The API key used to access Octopus Deploy. An API key is required, but you may also use the OCTOPUS_API_KEY environment variable. It is strongly recommended that this value retrieved from a GitHub secret.'
+  server:
+    description: 'The instance URL hosting Octopus Deploy (i.e. "https://octopus.example.com/"). The instance URL is required, but you may also use the OCTOPUS_URL environment variable.'
+  space:
+    description: 'The name of a space within which this command will be executed. The space name is required, but you may also use the OCTOPUS_SPACE environment variable.'
+  polling_interval:
+    default: 10
+    description: 'How frequently, in seconds, to check the status.'
+  timeout_after:
+    default: 600
+    description: 'Duration, in seconds, to allow for completion before timing out.'
+  hide_progress:
+    default: false
+    description: 'Whether to hide the progress of the task.'
+
+outputs:
+  completed_successfully:
+    description: 'Boolean indicating whether the task completed successfully or not.'
+
+runs:
+  using: 'node16'
+  main: 'dist/index.js'
