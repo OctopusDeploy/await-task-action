@@ -83,7 +83,10 @@ describe('integration tests', () => {
     server: apiClientConfig.instanceURL,
     apiKey: apiClientConfig.apiKey,
     space: apiClientConfig.space || 'Default',
-    serverTaskId: ''
+    serverTaskId: '',
+    pollingInterval: 10,
+    timeout: 600,
+    hideProgress: false
   }
 
   let apiClient: Client
