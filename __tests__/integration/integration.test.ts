@@ -71,7 +71,7 @@ async function deployReleaseForTest(client: Client, releaseNumber: string): Prom
 
   client.info(`Deployment for ${releaseNumber} created successfully!`)
 
-  return serverTasks[0].serverTaskId
+  return serverTasks.deploymentServerTasks[0].serverTaskId
 }
 
 describe('integration tests', () => {
