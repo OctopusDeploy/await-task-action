@@ -14,7 +14,6 @@ import {
   Repository
 } from '@octopusdeploy/api-client'
 import { randomBytes } from 'crypto'
-import { CleanupHelper } from './cleanup-helper'
 import { RunConditionForAction } from '@octopusdeploy/message-contracts/dist/runConditionForAction'
 import { setOutput } from '@actions/core'
 import { CaptureOutput } from '../test-helpers'
@@ -76,8 +75,6 @@ async function deployReleaseForTest(client: Client, releaseNumber: string): Prom
 
 describe('integration tests', () => {
   jest.setTimeout(100000)
-
-  const globalCleanup = new CleanupHelper()
 
   const standardInputParameters: InputParameters = {
     server: apiClientConfig.instanceURL,
@@ -183,8 +180,6 @@ describe('integration tests', () => {
       // Sneaky: if we are running inside github actions, we *do not* cleanup the octopus server project data.
       // rather, we leave it lying around and setOutput the random project name so the GHA self-test can use it
       setOutput('gha_selftest_server_task_id', localServerTaskId)
-    } else {
-      globalCleanup.cleanup()
     }
   })
 
