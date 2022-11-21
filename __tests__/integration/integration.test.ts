@@ -184,9 +184,6 @@ describe('integration tests', () => {
       // rather, we leave it lying around and setOutput the random project name so the GHA self-test can use it
       setOutput('gha_selftest_server_task_id', localServerTaskId)
     } else {
-      if (project) {
-        await repository.projects.del(project)
-      }
       globalCleanup.cleanup()
     }
   })
