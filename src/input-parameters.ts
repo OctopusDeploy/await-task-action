@@ -36,13 +36,13 @@ export function getInputParameters(): InputParameters {
   let pollingInterval = 10
   const intervalInput = getInput('polling_interval')
   if (intervalInput) {
-    pollingInterval = parseInt(intervalInput) * 1000
+    pollingInterval = parseInt(intervalInput)
   }
 
   let timeout = 600
   const timeoutInput = getInput('timeout')
   if (timeoutInput) {
-    timeout = parseInt(timeoutInput) * 1000
+    timeout = parseInt(timeoutInput)
   }
 
   const parameters: InputParameters = {

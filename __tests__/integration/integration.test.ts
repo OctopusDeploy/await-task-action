@@ -71,7 +71,7 @@ async function deployReleaseForTest(client: Client, releaseNumber: string): Prom
 
   client.info(`Deployment for ${releaseNumber} created successfully!`)
 
-  return serverTasks.DeploymentServerTasks[0].ServerTaskId
+  return serverTasks.DeploymentServerTasks[0].serverTaskId
 }
 
 describe('integration tests', () => {
@@ -106,8 +106,8 @@ describe('integration tests', () => {
     let devEnv: DeploymentEnvironment
     const envRepository = new EnvironmentRepository(apiClient, apiClientConfig.space || 'Default')
     const envs = await envRepository.list({ partialName: 'Dev' })
-    if (envs.Items.length === 1) {
-      devEnv = envs.Items[0]
+    if (envs.Items.filter(e => e.Name === 'Dev').length === 1) {
+      devEnv = envs.Items.filter(e => e.Name === 'Dev')[0]
     } else {
       devEnv = await envRepository.create({ Name: 'Dev' })
     }
@@ -184,7 +184,9 @@ describe('integration tests', () => {
       // rather, we leave it lying around and setOutput the random project name so the GHA self-test can use it
       setOutput('gha_selftest_server_task_id', localServerTaskId)
     } else {
-      await repository.projects.del(project)
+      if (project) {
+        await repository.projects.del(project)
+      }
       globalCleanup.cleanup()
     }
   })

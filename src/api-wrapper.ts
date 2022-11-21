@@ -8,7 +8,7 @@ export interface DeploymentResult {
 }
 
 export async function waitForTask(client: Client, parameters: InputParameters): Promise<boolean> {
-  const spaceId = resolveSpaceId(client, parameters.space)
+  const spaceId = await resolveSpaceId(client, parameters.space)
   client.info(
     `🐙 waiting for task [${parameters.serverTaskId}](${parameters.server}/app#/${spaceId}/tasks/${parameters.serverTaskId}) in Octopus Deploy...`
   )
@@ -16,11 +16,11 @@ export async function waitForTask(client: Client, parameters: InputParameters): 
   const waiter = new ExecutionWaiter(client, parameters.space)
   await waiter.waitForExecutionToComplete(
     [parameters.serverTaskId],
-    false,
+    !parameters.hideProgress,
     true,
     '',
-    parameters.pollingInterval,
-    parameters.timeout,
+    parameters.pollingInterval * 1000,
+    parameters.timeout * 1000,
     'task',
     (serverTaskDetails: ServerTaskDetails) => {
       if (parameters.hideProgress !== true) {
