@@ -25,12 +25,12 @@ export async function waitForTask(client: Client, parameters: InputParameters): 
     (serverTaskDetails: ServerTaskDetails) => {
       if (parameters.hideProgress !== true) {
         client.info(
-          `waiting for task ${serverTaskDetails.task.id}. Status: ${serverTaskDetails.task.state}. Progress: ${serverTaskDetails.progress.progressPercentage}%`
+          `waiting for task ${serverTaskDetails.Task.Id}. Status: ${serverTaskDetails.Task.State}. Progress: ${serverTaskDetails.Progress.ProgressPercentage}%`
         )
       }
     }
   )
 
   const serverTask = await getServerTask(client, parameters.space, parameters.serverTaskId)
-  return serverTask.state === TaskState.Success
+  return serverTask.State === TaskState.Success
 }
