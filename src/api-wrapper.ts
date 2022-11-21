@@ -16,7 +16,6 @@ export async function waitForTask(client: Client, parameters: InputParameters): 
   const waiter = new ExecutionWaiter(client, parameters.space)
   await waiter.waitForExecutionToComplete(
     [parameters.serverTaskId],
-    !parameters.hideProgress,
     true,
     '',
     parameters.pollingInterval * 1000,
