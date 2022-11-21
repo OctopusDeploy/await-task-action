@@ -47,14 +47,14 @@ async function createReleaseForTest(client: Client): Promise<string> {
 
   const command: CreateReleaseCommandV1 = {
     spaceName: apiClientConfig.space || 'Default',
-    projectName: localProjectName
+    ProjectName: localProjectName
   }
 
   const allocatedReleaseNumber = await createRelease(client, command)
 
-  client.info(`Release ${allocatedReleaseNumber.releaseVersion} created successfully!`)
+  client.info(`Release ${allocatedReleaseNumber.ReleaseVersion} created successfully!`)
 
-  return allocatedReleaseNumber.releaseVersion
+  return allocatedReleaseNumber.ReleaseVersion
 }
 
 async function deployReleaseForTest(client: Client, releaseNumber: string): Promise<string> {
@@ -62,16 +62,16 @@ async function deployReleaseForTest(client: Client, releaseNumber: string): Prom
 
   const command: CreateDeploymentUntenantedCommandV1 = {
     spaceName: apiClientConfig.space || 'Default',
-    projectName: localProjectName,
-    releaseVersion: releaseNumber,
-    environmentNames: ['Dev']
+    ProjectName: localProjectName,
+    ReleaseVersion: releaseNumber,
+    EnvironmentNames: ['Dev']
   }
 
   const serverTasks = await deployReleaseUntenanted(client, command)
 
   client.info(`Deployment for ${releaseNumber} created successfully!`)
 
-  return serverTasks.deploymentServerTasks[0].serverTaskId
+  return serverTasks.DeploymentServerTasks[0].ServerTaskId
 }
 
 describe('integration tests', () => {
@@ -106,10 +106,10 @@ describe('integration tests', () => {
     let devEnv: DeploymentEnvironment
     const envRepository = new EnvironmentRepository(apiClient, apiClientConfig.space || 'Default')
     const envs = await envRepository.list({ partialName: 'Dev' })
-    if (envs.items.length === 1) {
-      devEnv = envs.items[0]
+    if (envs.Items.length === 1) {
+      devEnv = envs.Items[0]
     } else {
-      devEnv = await envRepository.create({ name: 'Dev' })
+      devEnv = await envRepository.create({ Name: 'Dev' })
     }
 
     const lifeCycle = (await repository.lifecycles.all())[0]
@@ -118,7 +118,7 @@ describe('integration tests', () => {
       lifeCycle.Phases.push({
         Id: 'test',
         Name: 'Testing',
-        OptionalDeploymentTargets: [devEnv.id],
+        OptionalDeploymentTargets: [devEnv.Id],
         AutomaticDeploymentTargets: [],
         MinimumEnvironmentsBeforePromotion: 1,
         IsOptionalPhase: false
