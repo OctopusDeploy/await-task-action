@@ -209,7 +209,8 @@ describe('integration tests', () => {
     const client = await Client.create(config)
 
     const releaseNumber = await createReleaseForTest(client)
-    let serverTaskId = await deployReleaseForTest(client, releaseNumber)
+    const serverTaskId = await deployReleaseForTest(client, releaseNumber)
+    localServerTaskId = serverTaskId
     standardInputParameters.serverTaskId = serverTaskId
     const result = await waitForTask(client, standardInputParameters)
 
@@ -218,9 +219,5 @@ describe('integration tests', () => {
     expect(output.getAllMessages()).toContain(
       `[INFO] 🐙 waiting for task [${standardInputParameters.serverTaskId}](${standardInputParameters.server}/app#/${repository.spaceId}/tasks/${standardInputParameters.serverTaskId}) in Octopus Deploy...`
     )
-
-    // deploy again, so we get a different task id for the self test in the workflow
-    serverTaskId = await deployReleaseForTest(client, releaseNumber)
-    localServerTaskId = serverTaskId
   })
 })
