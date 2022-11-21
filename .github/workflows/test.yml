@@ -80,7 +80,7 @@ jobs:
         OCTOPUS_API_KEY: ${{ env.ADMIN_API_KEY }}
         OCTOPUS_SPACE: 'Default'
       with:
-        server_task_id: ${{ steps.npm_tests.outputs.gha_selftest_project_namegha_selftest_server_task_id }} # see integration.test.ts
+        server_task_id: ${{ steps.npm_tests.outputs.gha_selftest_server_task_id }} # see integration.test.ts
 
     - name: Echo success status from self-test
       run: echo "Deployment succeeded = [${{ steps.self_test.outputs.completed_successfully }}]"
