@@ -5,12 +5,12 @@ import {
   Client,
   ClientConfiguration,
   CreateDeploymentUntenantedCommandV1,
-  createRelease,
   CreateReleaseCommandV1,
   DeploymentEnvironment,
   deployReleaseUntenanted,
   EnvironmentRepository,
   Logger,
+  releaseCreate,
   Repository
 } from '@octopusdeploy/api-client'
 import { randomBytes } from 'crypto'
@@ -49,7 +49,7 @@ async function createReleaseForTest(client: Client): Promise<string> {
     ProjectName: localProjectName
   }
 
-  const allocatedReleaseNumber = await createRelease(client, command)
+  const allocatedReleaseNumber = await releaseCreate(client, command)
 
   client.info(`Release ${allocatedReleaseNumber.ReleaseVersion} created successfully!`)
 
