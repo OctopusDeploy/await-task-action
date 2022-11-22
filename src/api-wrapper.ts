@@ -1,5 +1,5 @@
 import { InputParameters } from './input-parameters'
-import { Client, ExecutionWaiter, getServerTask, resolveSpaceId } from '@octopusdeploy/api-client'
+import { Client, ExecutionWaiter, resolveSpaceId } from '@octopusdeploy/api-client'
 import { ServerTaskDetails, TaskState } from '@octopusdeploy/api-client/dist/features/serverTasks'
 
 export interface DeploymentResult {
@@ -14,13 +14,10 @@ export async function waitForTask(client: Client, parameters: InputParameters): 
   )
 
   const waiter = new ExecutionWaiter(client, parameters.space)
-  await waiter.waitForExecutionToComplete(
-    [parameters.serverTaskId],
-    true,
-    '',
+  const serverTask = await waiter.waitForExecutionToComplete(
+    parameters.serverTaskId,
     parameters.pollingInterval * 1000,
     parameters.timeout * 1000,
-    'task',
     (serverTaskDetails: ServerTaskDetails) => {
       if (parameters.hideProgress !== true) {
         client.info(
@@ -30,6 +27,5 @@ export async function waitForTask(client: Client, parameters: InputParameters): 
     }
   )
 
-  const serverTask = await getServerTask(client, parameters.space, parameters.serverTaskId)
-  return serverTask.State === TaskState.Success
+  return serverTask?.State === TaskState.Success
 }

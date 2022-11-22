@@ -175,7 +175,7 @@ describe('integration tests', () => {
     await repository.deploymentProcesses.saveToProject(project, deploymentProcess)
   })
 
-  afterAll(async () => {
+  afterAll(() => {
     if (process.env.GITHUB_ACTIONS) {
       // Sneaky: if we are running inside github actions, we *do not* cleanup the octopus server project data.
       // rather, we leave it lying around and setOutput the random project name so the GHA self-test can use it
@@ -209,8 +209,7 @@ describe('integration tests', () => {
     const client = await Client.create(config)
 
     const releaseNumber = await createReleaseForTest(client)
-    const serverTaskId = await deployReleaseForTest(client, releaseNumber)
-    localServerTaskId = serverTaskId
+    let serverTaskId = await deployReleaseForTest(client, releaseNumber)
     standardInputParameters.serverTaskId = serverTaskId
     const result = await waitForTask(client, standardInputParameters)
 
@@ -219,5 +218,9 @@ describe('integration tests', () => {
     expect(output.getAllMessages()).toContain(
       `[INFO] 🐙 waiting for task [${standardInputParameters.serverTaskId}](${standardInputParameters.server}/app#/${repository.spaceId}/tasks/${standardInputParameters.serverTaskId}) in Octopus Deploy...`
     )
+
+    // re-queue another deployment to the same environment, which the self test is going to wait for via localServerTaskId
+    serverTaskId = await deployReleaseForTest(client, releaseNumber)
+    localServerTaskId = serverTaskId
   })
 })
