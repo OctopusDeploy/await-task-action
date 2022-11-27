@@ -7,7 +7,7 @@ branding:
 
 inputs:
   server_task_id:
-    description: 'The execution task id to watch/wait for.'
+    description: 'The execution task ID to watch/wait for.'
     required: true
   polling_interval:
     default: 10
