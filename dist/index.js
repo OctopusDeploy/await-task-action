@@ -45313,6 +45313,9 @@ const api_wrapper_1 = __nccwpck_require__(34636);
         if (stepSummaryFile) {
             (0, fs_1.writeFileSync)(stepSummaryFile, `🐙 Octopus Deploy task ${completedSuccessfully ? 'completed successfully' : 'did not complete successfully'}.`);
         }
+        if (!completedSuccessfully) {
+            (0, core_1.setFailed)('🐙 Octopus Deploy task did not complete successfully');
+        }
     }
     catch (e) {
         if (e instanceof Error) {

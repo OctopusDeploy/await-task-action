@@ -46,6 +46,10 @@ import { waitForTask } from './api-wrapper'
         `🐙 Octopus Deploy task ${completedSuccessfully ? 'completed successfully' : 'did not complete successfully'}.`
       )
     }
+
+    if (!completedSuccessfully) {
+      setFailed('🐙 Octopus Deploy task did not complete successfully')
+    }
   } catch (e: unknown) {
     if (e instanceof Error) {
       setFailed(e)
