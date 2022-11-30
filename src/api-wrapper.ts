@@ -1,6 +1,5 @@
 import { InputParameters } from './input-parameters'
-import { Client, ExecutionWaiter, resolveSpaceId } from '@octopusdeploy/api-client'
-import { ServerTaskDetails, TaskState } from '@octopusdeploy/api-client/dist/features/serverTasks'
+import { Client, ExecutionWaiter, resolveSpaceId, ServerTaskDetails, TaskState } from '@octopusdeploy/api-client'
 
 export interface DeploymentResult {
   serverTaskId: string
