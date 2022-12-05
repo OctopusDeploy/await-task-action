@@ -1,20 +1,27 @@
 import { waitForTask } from '../../src/api-wrapper'
 // we use the Octopus API client to setup and teardown integration test data, it doesn't form part of create-release-action at this point
-import { PackageRequirement, ProjectResource, RunCondition, StartTrigger } from '@octopusdeploy/message-contracts'
 import {
   Client,
   ClientConfiguration,
   CreateDeploymentUntenantedCommandV1,
   CreateReleaseCommandV1,
   DeploymentEnvironment,
-  deployReleaseUntenanted,
+  DeploymentProcessRepository,
+  DeploymentRepository,
   EnvironmentRepository,
+  LifecycleRepository,
   Logger,
-  releaseCreate,
-  Repository
+  PackageRequirement,
+  Project,
+  ProjectGroupRepository,
+  ProjectRepository,
+  ReleaseRepository,
+  RunCondition,
+  RunConditionForAction,
+  SpaceRepository,
+  StartTrigger
 } from '@octopusdeploy/api-client'
 import { randomBytes } from 'crypto'
-import { RunConditionForAction } from '@octopusdeploy/message-contracts/dist/runConditionForAction'
 import { setOutput } from '@actions/core'
 import { CaptureOutput } from '../test-helpers'
 import { InputParameters } from '../../src/input-parameters'
@@ -33,23 +40,26 @@ import { InputParameters } from '../../src/input-parameters'
 const apiClientConfig: ClientConfiguration = {
   userAgentApp: 'Test',
   apiKey: process.env.OCTOPUS_TEST_API_KEY || 'API-XXXXXXXXXXXXXXXXXXXXXXXXXXXXXX',
-  instanceURL: process.env.OCTOPUS_TEST_URL || 'http://localhost:8050',
-  space: process.env.OCTOPUS_TEST_SPACE || 'Default'
+  instanceURL: process.env.OCTOPUS_TEST_URL || 'http://localhost:8050'
 }
 
 const runId = randomBytes(16).toString('hex')
 const localProjectName = `project${runId}`
 let localServerTaskId = ''
+let spaceName = ''
 
 async function createReleaseForTest(client: Client): Promise<string> {
   client.info('Creating a release in Octopus Deploy...')
 
+  spaceName = apiClientConfig.space || 'Default'
+
   const command: CreateReleaseCommandV1 = {
-    spaceName: apiClientConfig.space || 'Default',
+    spaceName,
     ProjectName: localProjectName
   }
 
-  const allocatedReleaseNumber = await releaseCreate(client, command)
+  const releaseRepository = new ReleaseRepository(client, command.spaceName)
+  const allocatedReleaseNumber = await releaseRepository.create(command)
 
   client.info(`Release ${allocatedReleaseNumber.ReleaseVersion} created successfully!`)
 
@@ -66,7 +76,8 @@ async function deployReleaseForTest(client: Client, releaseNumber: string): Prom
     EnvironmentNames: ['Dev']
   }
 
-  const serverTasks = await deployReleaseUntenanted(client, command)
+  const releaseRepository = new DeploymentRepository(client, command.spaceName)
+  const serverTasks = await releaseRepository.create(command)
 
   client.info(`Deployment for ${releaseNumber} created successfully!`)
 
@@ -87,17 +98,15 @@ describe('integration tests', () => {
   }
 
   let apiClient: Client
-  let repository: Repository
-  let project: ProjectResource
+  let project: Project
 
   beforeAll(async () => {
-    apiClient = await Client.create({ autoConnect: true, ...apiClientConfig })
-
-    repository = new Repository(apiClient)
+    apiClient = await Client.create(apiClientConfig)
 
     // pre-reqs: We need a project, which needs to have a deployment process
 
-    const projectGroup = (await repository.projectGroups.all())[0]
+    const projectGroup = (await new ProjectGroupRepository(apiClient, standardInputParameters.space).list({ take: 1 }))
+      .Items[0]
     if (!projectGroup) throw new Error("Can't find first projectGroup")
 
     let devEnv: DeploymentEnvironment
@@ -109,10 +118,11 @@ describe('integration tests', () => {
       devEnv = await envRepository.create({ Name: 'Dev' })
     }
 
-    const lifeCycle = (await repository.lifecycles.all())[0]
-    if (!lifeCycle) throw new Error("Can't find first lifecycle")
-    if (lifeCycle.Phases.length === 0) {
-      lifeCycle.Phases.push({
+    const lifecycleRepository = new LifecycleRepository(apiClient, standardInputParameters.space)
+    const lifecycle = (await lifecycleRepository.list({ take: 1 })).Items[0]
+    if (!lifecycle) throw new Error("Can't find first lifecycle")
+    if (lifecycle.Phases.length === 0) {
+      lifecycle.Phases.push({
         Id: 'test',
         Name: 'Testing',
         OptionalDeploymentTargets: [devEnv.Id],
@@ -120,20 +130,21 @@ describe('integration tests', () => {
         MinimumEnvironmentsBeforePromotion: 1,
         IsOptionalPhase: false
       })
-      await repository.lifecycles.modify(lifeCycle)
+      await lifecycleRepository.modify(lifecycle)
     }
 
-    project = await repository.projects.create({
+    const projectRepository = new ProjectRepository(apiClient, standardInputParameters.space)
+    project = await projectRepository.create({
       Name: localProjectName,
-      LifecycleId: lifeCycle.Id,
+      LifecycleId: lifecycle.Id,
       ProjectGroupId: projectGroup.Id
     })
 
-    const deploymentProcess = await repository.deploymentProcesses.get(project.DeploymentProcessId, undefined)
+    const deploymentProcessRepository = new DeploymentProcessRepository(apiClient, standardInputParameters.space)
+    const deploymentProcess = await deploymentProcessRepository.get(project)
     deploymentProcess.Steps = [
       {
         Condition: RunCondition.Success,
-        Links: {},
         PackageRequirement: PackageRequirement.LetOctopusDecide,
         StartTrigger: StartTrigger.StartAfterPrevious,
         Id: '',
@@ -165,14 +176,13 @@ describe('integration tests', () => {
               'Octopus.Action.Script.ScriptSource': 'Inline',
               'Octopus.Action.Script.Syntax': 'PowerShell',
               'Octopus.Action.Script.ScriptBody': "Write-Host 'hello'"
-            },
-            Links: {}
+            }
           }
         ]
       }
     ]
 
-    await repository.deploymentProcesses.saveToProject(project, deploymentProcess)
+    await deploymentProcessRepository.update(project, deploymentProcess)
   })
 
   afterAll(() => {
@@ -213,10 +223,13 @@ describe('integration tests', () => {
     standardInputParameters.serverTaskId = serverTaskId
     const result = await waitForTask(client, standardInputParameters)
 
+    const spaceRepository = new SpaceRepository(client)
+    const space = (await spaceRepository.list({ partialName: spaceName })).Items[0]
+
     // The first release in the project, so it should always have 0.0.1
     expect(result).toBe(true)
     expect(output.getAllMessages()).toContain(
-      `[INFO] 🐙 waiting for task [${standardInputParameters.serverTaskId}](${standardInputParameters.server}/app#/${repository.spaceId}/tasks/${standardInputParameters.serverTaskId}) in Octopus Deploy...`
+      `[INFO] 🐙 waiting for task [${standardInputParameters.serverTaskId}](${standardInputParameters.server}/app#/${space.Id}/tasks/${standardInputParameters.serverTaskId}) in Octopus Deploy...`
     )
 
     // re-queue another deployment to the same environment, which the self test is going to wait for via localServerTaskId

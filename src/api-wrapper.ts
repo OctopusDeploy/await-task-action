@@ -1,5 +1,5 @@
 import { InputParameters } from './input-parameters'
-import { Client, ExecutionWaiter, resolveSpaceId, ServerTaskDetails, TaskState } from '@octopusdeploy/api-client'
+import { Client, resolveSpaceId, ServerTaskDetails, ServerTaskWaiter, TaskState } from '@octopusdeploy/api-client'
 
 export interface DeploymentResult {
   serverTaskId: string
@@ -12,8 +12,8 @@ export async function waitForTask(client: Client, parameters: InputParameters): 
     `🐙 waiting for task [${parameters.serverTaskId}](${parameters.server}/app#/${spaceId}/tasks/${parameters.serverTaskId}) in Octopus Deploy...`
   )
 
-  const waiter = new ExecutionWaiter(client, parameters.space)
-  const serverTask = await waiter.waitForExecutionToComplete(
+  const waiter = new ServerTaskWaiter(client, parameters.space)
+  const serverTask = await waiter.waitForServerTaskToComplete(
     parameters.serverTaskId,
     parameters.pollingInterval * 1000,
     parameters.timeout * 1000,
