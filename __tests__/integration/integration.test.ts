@@ -45,13 +45,11 @@ const apiClientConfig: ClientConfiguration = {
 
 const runId = randomBytes(16).toString('hex')
 const localProjectName = `project${runId}`
+const spaceName = process.env.OCTOPUS_TEST_SPACE || 'Default'
 let localServerTaskId = ''
-let spaceName = ''
 
 async function createReleaseForTest(client: Client): Promise<string> {
   client.info('Creating a release in Octopus Deploy...')
-
-  spaceName = apiClientConfig.space || 'Default'
 
   const command: CreateReleaseCommandV1 = {
     spaceName,
@@ -70,7 +68,7 @@ async function deployReleaseForTest(client: Client, releaseNumber: string): Prom
   client.info('Deploying release in Octopus Deploy...')
 
   const command: CreateDeploymentUntenantedCommandV1 = {
-    spaceName: apiClientConfig.space || 'Default',
+    spaceName,
     ProjectName: localProjectName,
     ReleaseVersion: releaseNumber,
     EnvironmentNames: ['Dev']
@@ -90,7 +88,7 @@ describe('integration tests', () => {
   const standardInputParameters: InputParameters = {
     server: apiClientConfig.instanceURL,
     apiKey: apiClientConfig.apiKey,
-    space: apiClientConfig.space || 'Default',
+    space: spaceName,
     serverTaskId: '',
     pollingInterval: 10,
     timeout: 600,
@@ -110,7 +108,7 @@ describe('integration tests', () => {
     if (!projectGroup) throw new Error("Can't find first projectGroup")
 
     let devEnv: DeploymentEnvironment
-    const envRepository = new EnvironmentRepository(apiClient, apiClientConfig.space || 'Default')
+    const envRepository = new EnvironmentRepository(apiClient, spaceName)
     const envs = await envRepository.list({ partialName: 'Dev' })
     if (envs.Items.filter(e => e.Name === 'Dev').length === 1) {
       devEnv = envs.Items.filter(e => e.Name === 'Dev')[0]
