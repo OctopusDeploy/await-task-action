@@ -26,8 +26,8 @@ inputs:
     description: 'The name of a space within which this command will be executed. The space name is required, but you may also use the OCTOPUS_SPACE environment variable.'
 
 outputs:
-  completed_successfully:
-    description: 'Boolean indicating whether the task completed successfully or not.'
+  task_state:
+    description: 'The final [TaskState](https://github.com/OctopusDeploy/api-client.ts/blob/main/src/features/serverTasks/taskState.ts) returned from Octopus, or undefined if Octopus couldn't be contacted to retrieve the state'
 
 runs:
   using: 'node16'

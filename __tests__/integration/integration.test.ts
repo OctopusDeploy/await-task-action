@@ -227,7 +227,7 @@ describe('integration tests', () => {
     // The first release in the project, so it should always have 0.0.1
     expect(result).toBe(true)
     expect(output.getAllMessages()).toContain(
-      `[INFO] 🐙 waiting for task [${standardInputParameters.serverTaskId}](${standardInputParameters.server}/app#/${space.Id}/tasks/${standardInputParameters.serverTaskId}) in Octopus Deploy...`
+      `[INFO] 🐙 waiting for task ${standardInputParameters.server}/app#/${space.Id}/tasks/${standardInputParameters.serverTaskId} in Octopus Deploy...`
     )
 
     // re-queue another deployment to the same environment, which the self test is going to wait for via localServerTaskId

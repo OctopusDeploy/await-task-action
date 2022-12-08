@@ -58,9 +58,9 @@ steps:
 
 ## 📤 Outputs
 
-| Name                     | Description                                                        |
-| :----------------------- | :----------------------------------------------------------------- |
-| `completed_successfully` | Boolean indicating whether the task completed successfully or not. |
+| Name         | Description                                                                                                                                                                                                      |
+| :----------- | :--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `task_state` | The final [TaskState](https://github.com/OctopusDeploy/api-client.ts/blob/main/src/features/serverTasks/taskState.ts) returned from Octopus, or undefined if Octopus couldn't be contacted to retrieve the state |
 
 ## 🤝 Contributions
 
