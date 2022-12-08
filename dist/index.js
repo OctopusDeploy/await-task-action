@@ -5546,30 +5546,35 @@ var ServerTaskWaiter = /** @class */ (function () {
                         }, timeout);
                         _a.label = 1;
                     case 1:
-                        if (!!stop) return [3 /*break*/, 7];
-                        if (!pollingCallback) return [3 /*break*/, 3];
-                        return [4 /*yield*/, spaceServerTaskRepository.getDetails(serverTaskId)];
+                        if (!!stop) return [3 /*break*/, 10];
+                        _a.label = 2;
                     case 2:
+                        _a.trys.push([2, , 7, 8]);
+                        if (!pollingCallback) return [3 /*break*/, 4];
+                        return [4 /*yield*/, spaceServerTaskRepository.getDetails(serverTaskId)];
+                    case 3:
                         taskDetails = _a.sent();
                         pollingCallback(taskDetails);
                         if (taskDetails.Task.IsCompleted) {
-                            clearTimeout(t);
                             return [2 /*return*/, taskDetails.Task];
                         }
-                        return [3 /*break*/, 5];
-                    case 3: return [4 /*yield*/, spaceServerTaskRepository.getById(serverTaskId)];
-                    case 4:
+                        return [3 /*break*/, 6];
+                    case 4: return [4 /*yield*/, spaceServerTaskRepository.getById(serverTaskId)];
+                    case 5:
                         task = _a.sent();
                         if (task.IsCompleted) {
-                            clearTimeout(t);
                             return [2 /*return*/, task];
                         }
-                        _a.label = 5;
-                    case 5: return [4 /*yield*/, sleep(statusCheckSleepCycle)];
-                    case 6:
+                        _a.label = 6;
+                    case 6: return [3 /*break*/, 8];
+                    case 7:
+                        clearTimeout(t);
+                        return [7 /*endfinally*/];
+                    case 8: return [4 /*yield*/, sleep(statusCheckSleepCycle)];
+                    case 9:
                         _a.sent();
                         return [3 /*break*/, 1];
-                    case 7: return [2 /*return*/, null];
+                    case 10: return [2 /*return*/, null];
                 }
             });
         });
@@ -35020,7 +35025,7 @@ const api_wrapper_1 = __nccwpck_require__(4636);
         };
         const client = yield api_client_1.Client.create(config);
         const taskState = yield (0, api_wrapper_1.waitForTask)(client, parameters);
-        (0, core_1.setOutput)('task_state', taskState ? taskState : 'unknown');
+        (0, core_1.setOutput)('task_state', taskState);
         const stepSummaryFile = process.env.GITHUB_STEP_SUMMARY;
         if (stepSummaryFile) {
             (0, fs_1.writeFileSync)(stepSummaryFile, `🐙 Octopus Deploy task ${taskState === api_client_1.TaskState.Success ? 'completed successfully' : 'did not complete successfully'}.`);
