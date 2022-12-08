@@ -37,8 +37,7 @@ import { waitForTask } from './api-wrapper'
 
     const taskState = await waitForTask(client, parameters)
 
-    //setOutput('task_state', taskState)
-    setOutput('task_state', undefined)
+    setOutput('task_state', taskState && 'unknown')
 
     const stepSummaryFile = process.env.GITHUB_STEP_SUMMARY
     if (stepSummaryFile) {
