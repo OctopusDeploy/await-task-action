@@ -19,7 +19,8 @@ import {
   RunCondition,
   RunConditionForAction,
   SpaceRepository,
-  StartTrigger
+  StartTrigger,
+  TaskState
 } from '@octopusdeploy/api-client'
 import { randomBytes } from 'crypto'
 import { setOutput } from '@actions/core'
@@ -225,7 +226,7 @@ describe('integration tests', () => {
     const space = (await spaceRepository.list({ partialName: spaceName })).Items[0]
 
     // The first release in the project, so it should always have 0.0.1
-    expect(result).toBe(true)
+    expect(result).toBe(TaskState.Success)
     expect(output.getAllMessages()).toContain(
       `[INFO] 🐙 waiting for task ${standardInputParameters.server}/app#/${space.Id}/tasks/${standardInputParameters.serverTaskId} in Octopus Deploy...`
     )
