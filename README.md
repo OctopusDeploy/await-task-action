@@ -60,7 +60,7 @@ steps:
 
 | Name         | Description                                                                                                                                                                                                      |
 | :----------- | :--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `task_state` | The final [TaskState](https://github.com/OctopusDeploy/api-client.ts/blob/main/src/features/serverTasks/taskState.ts) returned from Octopus, or 'unknown' if Octopus couldn't be contacted to retrieve the state |
+| `task_state` | The final [TaskState](https://github.com/OctopusDeploy/api-client.ts/blob/main/src/features/serverTasks/taskState.ts) returned from Octopus, or undefined if Octopus couldn't be contacted to retrieve the state |
 
 ## 🤝 Contributions
 
