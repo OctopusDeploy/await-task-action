@@ -83,4 +83,18 @@ jobs:
         server_task_id: ${{ steps.npm_tests.outputs.gha_selftest_server_task_id }} # see integration.test.ts
 
     - name: Echo success status from self-test
-      run: echo "Deployment succeeded = [${{ steps.self_test.outputs.completed_successfully }}]"
+      run: echo "Deployment succeeded = [${{ steps.self_test.outputs.task_state }}]"
+
+    - name: GitHub Action self-test-2
+      id: self_test_2
+      uses: ./
+      continue-on-error: true
+      env:
+        OCTOPUS_URL: ${{ env.SERVER_URL }}
+        OCTOPUS_API_KEY: ${{ env.ADMIN_API_KEY }}
+        OCTOPUS_SPACE: 'Default'
+      with:
+        server_task_id: 'ServerTasks-99999'
+
+    - name: Echo success status from self-test-2
+      run: echo "Deployment succeeded = [${{ steps.self_test_2.outputs.task_state }}]"

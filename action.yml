@@ -26,8 +26,8 @@ inputs:
     description: 'The name of a space within which this command will be executed. The space name is required, but you may also use the OCTOPUS_SPACE environment variable.'
 
 outputs:
-  completed_successfully:
-    description: 'Boolean indicating whether the task completed successfully or not.'
+  task_state:
+    description: 'The final TaskState (Canceled, Failed, Success, or TimedOut) returned from Octopus, or undefined if Octopus could not be contacted to retrieve the state. '
 
 runs:
   using: 'node16'
