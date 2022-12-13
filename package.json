@@ -1,7 +1,7 @@
 {
   "author": "Octopus Deploy",
   "bugs": {
-    "url": "https://github.com/OctopusDeploy/deploy-release-untenanted-action/issues"
+    "url": "https://github.com/OctopusDeploy/await-task-action/issues"
   },
   "dependencies": {
     "@actions/core": "^1.10.0",
@@ -29,7 +29,7 @@
     "ts-jest": "^29.0.3",
     "typescript": "^4.9.4"
   },
-  "homepage": "https://github.com/OctopusDeploy/deploy-release-untenanted-action#readme",
+  "homepage": "https://github.com/OctopusDeploy/await-task-action#readme",
   "jest": {
     "clearMocks": true,
     "collectCoverage": true,
@@ -68,10 +68,10 @@
   ],
   "license": "Apache-2.0",
   "main": "src/index.ts",
-  "name": "deploy-release-untenanted-action",
+  "name": "await-task-action",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/OctopusDeploy/deploy-release-untenanted-action.git"
+    "url": "git+https://github.com/OctopusDeploy/await-task-action.git"
   },
   "scripts": {
     "all": "npm run format && npm run build && npm test",
