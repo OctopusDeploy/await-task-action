@@ -1,5 +1,12 @@
 # Changelog
 
+## [3.0.1](https://github.com/OctopusDeploy/await-task-action/compare/v3.0.0...v3.0.1) (2023-01-31)
+
+
+### Bug Fixes
+
+* updated dependencies ([7528e2d](https://github.com/OctopusDeploy/await-task-action/commit/7528e2d30ba02102c9dfea4b47a2cdb7e45ed36a))
+
 ## 3.0.0 (2022-12-13)
 
 
