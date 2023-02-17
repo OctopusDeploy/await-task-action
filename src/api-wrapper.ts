@@ -1,5 +1,5 @@
 import { InputParameters } from './input-parameters'
-import { Client, resolveSpaceId, ServerTaskDetails, ServerTaskWaiter, TaskState } from '@octopusdeploy/api-client'
+import { Client, resolveSpaceId, ServerTask, ServerTaskWaiter, TaskState } from '@octopusdeploy/api-client'
 
 export interface DeploymentResult {
   serverTaskId: string
@@ -17,11 +17,9 @@ export async function waitForTask(client: Client, parameters: InputParameters): 
     parameters.serverTaskId,
     parameters.pollingInterval * 1000,
     parameters.timeout * 1000,
-    (serverTaskDetails: ServerTaskDetails) => {
+    (task: ServerTask) => {
       if (parameters.hideProgress !== true) {
-        client.info(
-          `waiting for task ${serverTaskDetails.Task.Id}. Status: ${serverTaskDetails.Task.State}. Progress: ${serverTaskDetails.Progress.ProgressPercentage}%`
-        )
+        client.info(`waiting for task ${task.Id}. Status: ${task.State}.`)
       }
     }
   )
