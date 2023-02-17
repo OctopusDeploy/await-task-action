@@ -60,6 +60,10 @@ steps:
 | :----------- | :-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `task_state` | The final [TaskState](https://github.com/OctopusDeploy/api-client.ts/blob/main/src/features/serverTasks/taskState.ts) (Canceled, Failed, Success, or TimedOut) returned from Octopus, or undefined if Octopus couldn't be contacted to retrieve the state |
 
+## Developers guide
+
+[Developers Guide](DEVELOPERS_GUIDE.md)
+
 ## 🤝 Contributions
 
 Contributions are welcome! :heart: Please read our [Contributing Guide](.github/CONTRIBUTING.md) for information about how to get involved in this project.
