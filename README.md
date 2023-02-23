@@ -60,26 +60,6 @@ steps:
 | :----------- | :-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `task_state` | The final [TaskState](https://github.com/OctopusDeploy/api-client.ts/blob/main/src/features/serverTasks/taskState.ts) (Canceled, Failed, Success, or TimedOut) returned from Octopus, or undefined if Octopus couldn't be contacted to retrieve the state |
 
-## Developers guide
-
-[Developers Guide](DEVELOPERS_GUIDE.md)
-
 ## 🤝 Contributions
 
 Contributions are welcome! :heart: Please read our [Contributing Guide](.github/CONTRIBUTING.md) for information about how to get involved in this project.
-
-## Removing a release
-
-To remove a release from publication:
-
-Delete the release from the [releases](https://github.com/OctopusDeploy/await-task-action/releases) page and delete the corresponding tag from the [tags](https://github.com/OctopusDeploy/await-task-action/tags) page.
-
-To do this in the cli:
-
-v123 represents the release name
-
-```
-gh release delete v123
-git tag -d v123
-git push --delete origin v123
-```
