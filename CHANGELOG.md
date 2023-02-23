@@ -1,11 +1,12 @@
 # Changelog
 
-## [3.0.2](https://github.com/OctopusDeploy/await-task-action/compare/v3.0.1...v3.0.2) (2023-02-20)
+## [3.0.2](https://github.com/OctopusDeploy/await-task-action/compare/v3.0.1...v3.0.2) (2023-02-23)
 
 
 ### Bug Fixes
 
 * space lookups for &gt; 30 spaces ([fe321fc](https://github.com/OctopusDeploy/await-task-action/commit/fe321fcade9758db724970d4b375c1b5e3d945f7))
+* url encoding in space names [04298896](https://github.com/OctopusDeploy/await-task-action/commit/04298896e80eb6e427e32b2a54c2e440d2c49363)
 
 ## [3.0.1](https://github.com/OctopusDeploy/await-task-action/compare/v3.0.0...v3.0.1) (2023-01-31)
 
