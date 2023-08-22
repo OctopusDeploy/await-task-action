@@ -30,6 +30,7 @@ import { waitForTask } from './api-wrapper'
       userAgentApp: 'GitHubActions await-task-action',
       instanceURL: parameters.server,
       apiKey: parameters.apiKey,
+      accessToken: parameters.accessToken,
       logging: logger
     }
 
