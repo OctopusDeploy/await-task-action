@@ -68,7 +68,7 @@ export function getInputParameters(): InputParameters {
 
   if (!parameters.apiKey && !parameters.accessToken) {
     errors.push(
-      "The Octopus API Key is required, please specify explictly through the 'api_key' input or set the OCTOPUS_API_KEY environment variable."
+      "The Octopus API Key is required, please specify explicitly through the 'api_key' input or set the OCTOPUS_API_KEY environment variable."
     )
   }
 
