@@ -1,5 +1,12 @@
 # Changelog
 
+## [3.1.0](https://github.com/OctopusDeploy/await-task-action/compare/v3.0.2...v3.1.0) (2023-08-30)
+
+
+### Features
+
+* Adds support for authenticating with access token ([#20](https://github.com/OctopusDeploy/await-task-action/issues/20)) ([61861f7](https://github.com/OctopusDeploy/await-task-action/commit/61861f709a5e0e373a457156089ba8fbad4186fc))
+
 ## [3.0.2](https://github.com/OctopusDeploy/await-task-action/compare/v3.0.1...v3.0.2) (2023-02-23)
 
 
