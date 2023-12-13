@@ -30,5 +30,5 @@ outputs:
     description: 'The final TaskState (Canceled, Failed, Success, or TimedOut) returned from Octopus, or undefined if Octopus could not be contacted to retrieve the state. '
 
 runs:
-  using: 'node16'
+  using: 'node20'
   main: 'dist/index.js'
