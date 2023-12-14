@@ -1,5 +1,12 @@
 # Changelog
 
+## [3.2.0](https://github.com/OctopusDeploy/await-task-action/compare/v3.1.0...v3.2.0) (2023-12-14)
+
+
+### Features
+
+* Upgrade to node 20 ([#30](https://github.com/OctopusDeploy/await-task-action/issues/30)) ([a64de79](https://github.com/OctopusDeploy/await-task-action/commit/a64de79d02efaee95699e2d16032293bffc12025))
+
 ## [3.1.0](https://github.com/OctopusDeploy/await-task-action/compare/v3.0.2...v3.1.0) (2023-08-30)
 
 
