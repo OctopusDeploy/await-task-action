@@ -1,5 +1,13 @@
 # Changelog
 
+## [3.2.1](https://github.com/OctopusDeploy/await-task-action/compare/v3.2.0...v3.2.1) (2024-02-04)
+
+
+### Bug Fixes
+
+* **deps:** pin dependencies ([32a4b7f](https://github.com/OctopusDeploy/await-task-action/commit/32a4b7f17155ac5766858f6904e480c2117b6107))
+* **deps:** update dependency @actions/core to v1.10.1 ([b2d7a02](https://github.com/OctopusDeploy/await-task-action/commit/b2d7a025b5643fc19bd8d715c4ffa628d2df8047))
+
 ## [3.2.0](https://github.com/OctopusDeploy/await-task-action/compare/v3.1.0...v3.2.0) (2023-12-14)
 
 
