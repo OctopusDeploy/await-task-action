@@ -3858,12 +3858,12 @@ var globp = (0, util_1.promisify)(glob_1.glob);
  * @param {boolean} overwrite Whether to overwrite the Zip file if it already exists. Defaults to true if not specified.
  */
 function doZip(basePath, inputFilePatterns, outputFolder, zipFilename, logger, compressionLevel, overwrite) {
-    var _a, _b, _c;
+    var _a, _b, _c, _d;
     return __awaiter(this, void 0, void 0, function () {
         var archivePath, initialWorkingDirectory, zip, files, files_1, files_1_1, file, dirName;
-        var e_1, _d;
-        return __generator(this, function (_e) {
-            switch (_e.label) {
+        var e_1, _e;
+        return __generator(this, function (_f) {
+            switch (_f.label) {
                 case 0:
                     archivePath = path_1.default.resolve(outputFolder, zipFilename);
                     (_a = logger.info) === null || _a === void 0 ? void 0 : _a.call(logger, "Writing to package: ".concat(archivePath, "..."));
@@ -3872,7 +3872,7 @@ function doZip(basePath, inputFilePatterns, outputFolder, zipFilename, logger, c
                     zip = new adm_zip_1.default();
                     return [4 /*yield*/, expandGlobs(inputFilePatterns)];
                 case 1:
-                    files = _e.sent();
+                    files = _f.sent();
                     try {
                         for (files_1 = __values(files), files_1_1 = files_1.next(); !files_1_1.done; files_1_1 = files_1.next()) {
                             file = files_1_1.value;
@@ -3889,7 +3889,7 @@ function doZip(basePath, inputFilePatterns, outputFolder, zipFilename, logger, c
                     catch (e_1_1) { e_1 = { error: e_1_1 }; }
                     finally {
                         try {
-                            if (files_1_1 && !files_1_1.done && (_d = files_1.return)) _d.call(files_1);
+                            if (files_1_1 && !files_1_1.done && (_e = files_1.return)) _e.call(files_1);
                         }
                         finally { if (e_1) throw e_1.error; }
                     }
@@ -3898,10 +3898,11 @@ function doZip(basePath, inputFilePatterns, outputFolder, zipFilename, logger, c
                     }
                     setCompressionLevel(zip, compressionLevel || 8);
                     process.chdir(initialWorkingDirectory);
-                    return [4 /*yield*/, zip.writeZipPromise(archivePath, { overwrite: overwrite || true })];
-                case 2:
-                    _e.sent();
-                    return [2 /*return*/];
+                    if (fs_1.default.existsSync(archivePath) && overwrite === false) {
+                        (_d = logger.info) === null || _d === void 0 ? void 0 : _d.call(logger, "Found an existing archive at ".concat(archivePath, " and overwrite is disabled. The existing archive will not be overwritten."));
+                        return [2 /*return*/];
+                    }
+                    return [2 /*return*/, zip.writeZip(archivePath, function () { })];
             }
         });
     });
