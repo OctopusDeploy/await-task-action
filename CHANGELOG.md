@@ -1,5 +1,13 @@
 # Changelog
 
+## [3.2.2](https://github.com/OctopusDeploy/await-task-action/compare/v3.2.1...v3.2.2) (2024-06-19)
+
+
+### Bug Fixes
+
+* **deps:** update dependency tmp to v0.2.3 ([aef8f19](https://github.com/OctopusDeploy/await-task-action/commit/aef8f195a5633f9512a4f739e5495c8af22fd5de))
+* fix issue where timeout is not enforced ([5f1f8d4](https://github.com/OctopusDeploy/await-task-action/commit/5f1f8d4870cc6274dd310fe048bd09fd7e1e7119))
+
 ## [3.2.1](https://github.com/OctopusDeploy/await-task-action/compare/v3.2.0...v3.2.1) (2024-02-04)
 
 
