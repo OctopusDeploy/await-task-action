@@ -43,7 +43,7 @@ export function getInputParameters(): InputParameters {
   }
 
   let timeout = 600
-  const timeoutInput = getInput('timeout')
+  const timeoutInput = getInput('timeout-after')
   if (timeoutInput) {
     timeout = parseInt(timeoutInput)
   }
