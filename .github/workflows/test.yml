@@ -103,3 +103,19 @@ jobs:
 
     - name: Echo success status from self-test-2
       run: echo "Deployment succeeded = [${{ steps.self_test_2.outputs.task_state }}]"
+
+  notify: 
+    runs-on: ubuntu-latest
+    name: Slack - Notify on nightly build failure
+    needs: [test]
+    # if: ${{ github.event_name == 'schedule' && failure() }}
+
+    steps:
+      - name: Notify
+        uses: voxmedia/github-action-slack-notify-build@v1.6.0
+        with:
+          channel: ${{ secrets.SLACK_NOTIFICATIONS_CHANNEL }}
+          status: FAILED
+          color: danger
+        env:
+          SLACK_BOT_TOKEN: ${{ secrets.SLACK_NOTIFICATIONS_TOKEN }}
