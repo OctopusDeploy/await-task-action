@@ -108,7 +108,7 @@ jobs:
     runs-on: ubuntu-latest
     name: Slack - Notify on nightly build failure
     needs: [test]
-    # if: ${{ github.event_name == 'schedule' && failure() }}
+    if: ${{ github.event_name == 'schedule' && failure() }}
 
     steps:
       - name: Notify
