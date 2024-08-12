@@ -114,7 +114,7 @@ jobs:
       - name: Notify
         uses: voxmedia/github-action-slack-notify-build@v1.6.0
         with:
-          channel: ${{ secrets.SLACK_NOTIFICATIONS_CHANNEL }}
+          channel_id: ${{ secrets.SLACK_NOTIFICATIONS_CHANNEL_ID }}
           status: FAILED
           color: danger
         env:
