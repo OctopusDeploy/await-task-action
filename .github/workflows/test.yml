@@ -112,7 +112,7 @@ jobs:
 
     steps:
       - name: Notify
-        uses: voxmedia/github-action-slack-notify-build@v1.6.0
+        uses: zuplo/github-action-slack-notify-build@v2
         with:
           channel_id: ${{ secrets.SLACK_NOTIFICATIONS_CHANNEL_ID }}
           status: FAILED
