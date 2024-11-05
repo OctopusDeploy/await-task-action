@@ -1,5 +1,12 @@
 # Changelog
 
+## [3.2.4](https://github.com/OctopusDeploy/await-task-action/compare/v3.2.3...v3.2.4) (2024-11-05)
+
+
+### Bug Fixes
+
+* **deps:** update dependency @octopusdeploy/api-client to v3.4.1 ([9b9f345](https://github.com/OctopusDeploy/await-task-action/commit/9b9f345ae27dedace596b7cde17b47d381774ff1))
+
 ## [3.2.3](https://github.com/OctopusDeploy/await-task-action/compare/v3.2.2...v3.2.3) (2024-08-08)
 
 
