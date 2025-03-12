@@ -1,5 +1,15 @@
 # Changelog
 
+## [3.2.4](https://github.com/OctopusDeploy/await-task-action/compare/v3.2.3...v3.2.4) (2025-03-12)
+
+
+### Bug Fixes
+
+* **deps:** update dependency @actions/core to v1.11.1 ([65bab2e](https://github.com/OctopusDeploy/await-task-action/commit/65bab2ef227703ed106128de3680fa92bbf3b54d))
+* **deps:** update dependency @octopusdeploy/api-client to v3.4.1 ([9b9f345](https://github.com/OctopusDeploy/await-task-action/commit/9b9f345ae27dedace596b7cde17b47d381774ff1))
+* **deps:** update dependency @octopusdeploy/api-client to v3.5.1 ([63ea6a9](https://github.com/OctopusDeploy/await-task-action/commit/63ea6a90d45544af20911e4775cfb87c74e0decb))
+* **deps:** update dependency @octopusdeploy/api-client to v3.5.2 ([#173](https://github.com/OctopusDeploy/await-task-action/issues/173)) ([1c78e25](https://github.com/OctopusDeploy/await-task-action/commit/1c78e25eff56af25bc90fa9e9e457bbde99e25da))
+
 ## [3.2.3](https://github.com/OctopusDeploy/await-task-action/compare/v3.2.2...v3.2.3) (2024-08-08)
 
 
