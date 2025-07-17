@@ -44553,7 +44553,6 @@ function waitForTask(client, parameters) {
     return __awaiter(this, void 0, void 0, function* () {
         const spaceId = yield (0, api_client_1.resolveSpaceId)(client, parameters.space);
         client.info(`🐙 waiting for task ${parameters.server}/app#/${spaceId}/tasks/${parameters.serverTaskId} in Octopus Deploy...`);
-        client.info(`DEBUG: : timeout=${parameters.timeout}, cancelOnTimeout=${parameters.cancelOnTimeout}`);
         const waiter = new api_client_1.ServerTaskWaiter(client, parameters.space);
         const serverTask = yield waiter.waitForServerTaskToComplete(parameters.serverTaskId, parameters.pollingInterval * 1000, parameters.timeout * 1000, (task) => {
             if (parameters.hideProgress !== true) {
