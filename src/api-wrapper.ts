@@ -11,9 +11,7 @@ export async function waitForTask(client: Client, parameters: InputParameters): 
   client.info(
     `🐙 waiting for task ${parameters.server}/app#/${spaceId}/tasks/${parameters.serverTaskId} in Octopus Deploy...`
   )
-  client.info(
-    `DEBUG: : timeout=${parameters.timeout}, cancelOnTimeout=${parameters.cancelOnTimeout}`
-  )
+  client.info(`DEBUG: : timeout=${parameters.timeout}, cancelOnTimeout=${parameters.cancelOnTimeout}`)
 
   const waiter = new ServerTaskWaiter(client, parameters.space)
   const serverTask = await waiter.waitForServerTaskToComplete(
