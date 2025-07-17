@@ -21,7 +21,8 @@ export async function waitForTask(client: Client, parameters: InputParameters): 
       if (parameters.hideProgress !== true) {
         client.info(`waiting for task ${task.Id}. Status: ${task.State}.`)
       }
-    }
+    },
+    parameters.cancelOnTimeout
   )
 
   return serverTask?.State

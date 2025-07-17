@@ -24,6 +24,9 @@ inputs:
     description: 'The API key used to access Octopus Deploy. An API key is required, but you may also use the OCTOPUS_API_KEY environment variable. It is strongly recommended that this value retrieved from a GitHub secret.'
   space:
     description: 'The name of a space within which this command will be executed. The space name is required, but you may also use the OCTOPUS_SPACE environment variable.'
+  cancel_on_timeout:
+    default: false
+    description: 'Cancel the Octopus task and mark this action as failed if the timeout is reached.'
 
 outputs:
   task_state:
