@@ -93,7 +93,8 @@ describe('integration tests', () => {
     serverTaskId: '',
     pollingInterval: 10,
     timeout: 600,
-    hideProgress: false
+    hideProgress: false,
+    cancelOnTimeout: false
   }
 
   let apiClient: Client
