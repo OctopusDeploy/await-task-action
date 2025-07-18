@@ -44,8 +44,8 @@ export function getInputParameters(): InputParameters {
   }
 
   let timeout = 600
-  // Fixes use bug where timeout was used instead of timeout_after
-  // timeout kept for backward compatibility.
+  // Fixes bug where timeout was used instead of timeout_after
+  // timeout kept for backward compatibility
   const timeoutInput = getInput('timeout_after') || getInput('timeout')
   if (timeoutInput) {
     timeout = parseInt(timeoutInput)
