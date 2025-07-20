@@ -23,6 +23,7 @@ export interface InputParameters {
   pollingInterval: number
   timeout: number
   hideProgress: boolean
+  cancelOnTimeout: boolean
 }
 
 export function getInputParameters(): InputParameters {
@@ -43,7 +44,9 @@ export function getInputParameters(): InputParameters {
   }
 
   let timeout = 600
-  const timeoutInput = getInput('timeout')
+  // Fixes bug where timeout was used instead of timeout_after
+  // timeout kept for backward compatibility
+  const timeoutInput = getInput('timeout_after') || getInput('timeout')
   if (timeoutInput) {
     timeout = parseInt(timeoutInput)
   }
@@ -56,7 +59,8 @@ export function getInputParameters(): InputParameters {
     serverTaskId: getInput('server_task_id', { required: true }),
     pollingInterval,
     timeout,
-    hideProgress: getBooleanInput('hide_progress') || false
+    hideProgress: getBooleanInput('hide_progress') || false,
+    cancelOnTimeout: getBooleanInput('cancel_on_timeout') || false
   }
 
   const errors: string[] = []
