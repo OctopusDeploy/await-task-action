@@ -1,5 +1,12 @@
 # Changelog
 
+## [3.3.0](https://github.com/OctopusDeploy/await-task-action/compare/v3.2.4...v3.3.0) (2025-07-20)
+
+
+### Features
+
+* Add cancel_on_timeout option for await-task-action ([#204](https://github.com/OctopusDeploy/await-task-action/issues/204)) ([2644db4](https://github.com/OctopusDeploy/await-task-action/commit/2644db47d5cc5a37b455a4232e768cb166cab904))
+
 ## [3.2.4](https://github.com/OctopusDeploy/await-task-action/compare/v3.2.3...v3.2.4) (2025-03-12)
 
 
