@@ -15196,6 +15196,7 @@ var https = __nccwpck_require__(5692);
 var parseUrl = (__nccwpck_require__(7016).parse);
 var fs = __nccwpck_require__(9896);
 var Stream = (__nccwpck_require__(2203).Stream);
+var crypto = __nccwpck_require__(6982);
 var mime = __nccwpck_require__(4096);
 var asynckit = __nccwpck_require__(1324);
 var setToStringTag = __nccwpck_require__(8700);
@@ -15533,12 +15534,7 @@ FormData.prototype._generateBoundary = function () {
   // This generates a 50 character boundary similar to those used by Firefox.
 
   // They are optimized for boyer-moore parsing.
-  var boundary = '--------------------------';
-  for (var i = 0; i < 24; i++) {
-    boundary += Math.floor(Math.random() * 10).toString(16);
-  }
-
-  this._boundary = boundary;
+  this._boundary = '--------------------------' + crypto.randomBytes(12).toString('hex');
 };
 
 // Note: getLengthSync DOESN'T calculate streams length
