@@ -1,5 +1,13 @@
 # Changelog
 
+## [3.3.1](https://github.com/OctopusDeploy/await-task-action/compare/v3.3.0...v3.3.1) (2025-11-24)
+
+
+### Bug Fixes
+
+* **deps:** update dependency tmp to v0.2.4 [security] ([#213](https://github.com/OctopusDeploy/await-task-action/issues/213)) ([5320dad](https://github.com/OctopusDeploy/await-task-action/commit/5320dad91b902944e0e265690dcdd0cc149c3457))
+* **deps:** update dependency tmp to v0.2.5 ([#216](https://github.com/OctopusDeploy/await-task-action/issues/216)) ([dcc2478](https://github.com/OctopusDeploy/await-task-action/commit/dcc2478ee6b9ac26862d007ff111628b974bc007))
+
 ## [3.3.0](https://github.com/OctopusDeploy/await-task-action/compare/v3.2.4...v3.3.0) (2025-07-20)
 
 
