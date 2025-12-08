@@ -1,19 +1,14 @@
-import { defineConfig, globalIgnores } from "eslint/config";
+import { defineConfig } from "eslint/config";
 import jest from "eslint-plugin-jest";
 import typescriptEslint from "@typescript-eslint/eslint-plugin";
 import stylistic from "@stylistic/eslint-plugin";
 import globals from "globals";
 import tsParser from "@typescript-eslint/parser";
-import path from "node:path";
-import { fileURLToPath } from "node:url";
 import github from "eslint-plugin-github";
-
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
 
 export default defineConfig([
     {
-        ignores: ["**/dist/", "**/lib/", "**/node_modules/", "**/jest.config.js", "**/out/"],
+        ignores: ["**/dist/", "**/lib/", "**/node_modules/", "**/jest.config.js", "**/out/", "eslint.config.mjs"],
     },
     github.getFlatConfigs().recommended,
     {
@@ -26,8 +21,8 @@ export default defineConfig([
 
         languageOptions: {
             globals: {
-                ...jest.environments.globals.globals,
                 ...globals.node,
+                ...globals.jest,
                 NodeJS: true,
             },
 
