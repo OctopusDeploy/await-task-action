@@ -81,6 +81,7 @@ export default defineConfig([
             "@stylistic/function-call-spacing": ["error", "never"],
             "@stylistic/semi": ["error", "never"],
             "@stylistic/type-annotation-spacing": "error",
+            "@typescript-eslint/no-var-requires": "error",
         },
     },
     {
