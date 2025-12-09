@@ -25,7 +25,7 @@ env:
 steps:
   # ...
   - name: Await task in Octopus Deploy 🐙
-    uses: OctopusDeploy/await-task-action@v3
+    uses: OctopusDeploy/await-task-action@v4
     env:
       OCTOPUS_API_KEY: ${{ secrets.API_KEY  }}
       OCTOPUS_URL: ${{ secrets.SERVER }}
