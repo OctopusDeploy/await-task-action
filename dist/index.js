@@ -44562,7 +44562,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", ({ value: true }));
-exports.waitForTask = void 0;
+exports.waitForTask = waitForTask;
 const api_client_1 = __nccwpck_require__(1212);
 function waitForTask(client, parameters) {
     return __awaiter(this, void 0, void 0, function* () {
@@ -44577,7 +44577,6 @@ function waitForTask(client, parameters) {
         return serverTask === null || serverTask === void 0 ? void 0 : serverTask.State;
     });
 }
-exports.waitForTask = waitForTask;
 
 
 /***/ }),
@@ -44664,7 +44663,7 @@ const api_wrapper_1 = __nccwpck_require__(6049);
 "use strict";
 
 Object.defineProperty(exports, "__esModule", ({ value: true }));
-exports.getInputParameters = void 0;
+exports.getInputParameters = getInputParameters;
 const core_1 = __nccwpck_require__(7484);
 const EnvironmentVariables = {
     URL: 'OCTOPUS_URL',
@@ -44720,7 +44719,6 @@ function getInputParameters() {
     }
     return parameters;
 }
-exports.getInputParameters = getInputParameters;
 
 
 /***/ }),
