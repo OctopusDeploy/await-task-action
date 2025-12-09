@@ -4,7 +4,7 @@ import { writeFileSync } from 'fs'
 import { Client, ClientConfiguration, Logger, TaskState } from '@octopusdeploy/api-client'
 import { waitForTask } from './api-wrapper'
 
-// GitHub actions entrypoint
+// GitHub actions  entrypoint
 ;(async (): Promise<void> => {
   try {
     const logger: Logger = {
