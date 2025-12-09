@@ -1,5 +1,16 @@
 # Changelog
 
+## [4.0.0](https://github.com/OctopusDeploy/await-task-action/compare/v3.3.1...v4.0.0) (2025-12-09)
+
+
+### ⚠ BREAKING CHANGES
+
+* Migrate to node 24
+
+### Features
+
+* Migrate to node 24 ([9d8c8cc](https://github.com/OctopusDeploy/await-task-action/commit/9d8c8ccc1e8f14a1133590e6c6d8645f620e9f88))
+
 ## [3.3.1](https://github.com/OctopusDeploy/await-task-action/compare/v3.3.0...v3.3.1) (2025-11-24)
 
 
