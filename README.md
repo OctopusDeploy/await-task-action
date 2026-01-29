@@ -25,6 +25,7 @@ env:
 steps:
   # ...
   - name: Await task in Octopus Deploy 🐙
+    id: await_task_in_octopus_deploy
     uses: OctopusDeploy/await-task-action@v4
     env:
       OCTOPUS_API_KEY: ${{ secrets.API_KEY  }}
@@ -32,6 +33,43 @@ steps:
       OCTOPUS_SPACE: 'Outer Space'
     with:
       server_task_id: ${{ fromJson(steps.some_previous_deployment_step.outputs.server_tasks)[0].serverTaskId }}
+```
+
+Example of waiting for a deployment to be completed:
+
+```yml
+
+
+env:
+
+steps:
+  # ...
+  - name: Deploy a release in Octopus Deploy 🐙
+    id: deploy_a_release_in_octopus_deploy
+    uses: OctopusDeploy/deploy-release-action@v4
+    env:
+      OCTOPUS_API_KEY: ${{ secrets.API_KEY  }}
+      OCTOPUS_URL: ${{ secrets.SERVER }}
+      OCTOPUS_SPACE: 'Outer Space'
+    with:
+      project: 'MyProject'
+      release_number: '1.0.0'
+      environments: |
+        Dev
+        Test
+      variables: |
+        Foo: Bar
+        Fizz: Buzz
+
+  - name: Await task in Octopus Deploy 🐙
+    id: await_task_in_octopus_deploy
+    uses: OctopusDeploy/await-task-action@v4
+    env:
+      OCTOPUS_API_KEY: ${{ secrets.API_KEY  }}
+      OCTOPUS_URL: ${{ secrets.SERVER }}
+      OCTOPUS_SPACE: 'Outer Space'
+    with:
+      server_task_id: ${{ fromJson(steps.deploy_a_release_in_octopus_deploy.outputs.server_tasks)[0].serverTaskId }}
 ```
 
 ## ✍️ Environment Variables
