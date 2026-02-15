@@ -26,7 +26,7 @@ steps:
   # ...
   - name: Await task in Octopus Deploy 🐙
     id: await_task_in_octopus_deploy
-    uses: OctopusDeploy/await-task-action@v4
+    uses: OctopusDeploy/await-task-action@v5
     env:
       OCTOPUS_API_KEY: ${{ secrets.API_KEY  }}
       OCTOPUS_URL: ${{ secrets.SERVER }}
@@ -63,7 +63,7 @@ steps:
 
   - name: Await task in Octopus Deploy 🐙
     id: await_task_in_octopus_deploy
-    uses: OctopusDeploy/await-task-action@v4
+    uses: OctopusDeploy/await-task-action@v5
     env:
       OCTOPUS_API_KEY: ${{ secrets.API_KEY  }}
       OCTOPUS_URL: ${{ secrets.SERVER }}
