@@ -1,5 +1,9 @@
 name: Renovate
 on:
+  push:
+    branches:
+      - dylan/update-renovate-commands
+
   schedule:
     - cron: "0 3 * * *"
 
