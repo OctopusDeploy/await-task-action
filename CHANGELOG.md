@@ -1,5 +1,21 @@
 # Changelog
 
+## [5.0.0](https://github.com/OctopusDeploy/await-task-action/compare/v4.0.0...v5.0.0) (2026-02-22)
+
+
+### ⚠ BREAKING CHANGES
+
+* update CodeQL and Checkout ([#251](https://github.com/OctopusDeploy/await-task-action/issues/251))
+
+### Features
+
+* Add conventional commit title check workflow ([#246](https://github.com/OctopusDeploy/await-task-action/issues/246)) ([547dec7](https://github.com/OctopusDeploy/await-task-action/commit/547dec7acc0fa91a3f868ecee40f9974facfc6d1))
+
+
+### Bug Fixes
+
+* update CodeQL and Checkout ([#251](https://github.com/OctopusDeploy/await-task-action/issues/251)) ([a461d98](https://github.com/OctopusDeploy/await-task-action/commit/a461d985b71c2f655b1a34dde64ac9bf8c5989c6))
+
 ## [4.0.0](https://github.com/OctopusDeploy/await-task-action/compare/v3.3.1...v4.0.0) (2025-12-09)
 
 
