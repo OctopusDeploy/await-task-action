@@ -1,5 +1,12 @@
 # Changelog
 
+## [4.1.0](https://github.com/OctopusDeploy/await-task-action/compare/v4.0.0...v4.1.0) (2026-03-10)
+
+
+### Features
+
+* Add conventional commit title check workflow ([#246](https://github.com/OctopusDeploy/await-task-action/issues/246)) ([547dec7](https://github.com/OctopusDeploy/await-task-action/commit/547dec7acc0fa91a3f868ecee40f9974facfc6d1))
+
 ## [4.0.0](https://github.com/OctopusDeploy/await-task-action/compare/v3.3.1...v4.0.0) (2025-12-09)
 
 
