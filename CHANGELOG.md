@@ -1,5 +1,12 @@
 # Changelog
 
+## [4.0.1](https://github.com/OctopusDeploy/await-task-action/compare/v4.0.0...v4.0.1) (2026-04-14)
+
+
+### Bug Fixes
+
+* **deps:** bump axios from 1.13.5 to 1.15.0 ([#296](https://github.com/OctopusDeploy/await-task-action/issues/296)) ([905f1ae](https://github.com/OctopusDeploy/await-task-action/commit/905f1aea4be3038385e9c527697a874017c3c812))
+
 ## [4.0.0](https://github.com/OctopusDeploy/await-task-action/compare/v3.3.1...v4.0.0) (2025-12-09)
 
 
