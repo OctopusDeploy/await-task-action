@@ -1,5 +1,13 @@
 # Changelog
 
+## [4.0.2](https://github.com/OctopusDeploy/await-task-action/compare/v4.0.1...v4.0.2) (2026-06-08)
+
+
+### Bug Fixes
+
+* patch transitive axios vulnerability via npm audit fix ([#307](https://github.com/OctopusDeploy/await-task-action/issues/307)) ([3e4f182](https://github.com/OctopusDeploy/await-task-action/commit/3e4f182375673250a24d0e9a6c79824684daab1a))
+* update axios to v1.17.0 ([#316](https://github.com/OctopusDeploy/await-task-action/issues/316)) ([18d2780](https://github.com/OctopusDeploy/await-task-action/commit/18d2780c7717c8f0f61a6fc40db09053c64a58c7))
+
 ## [4.0.1](https://github.com/OctopusDeploy/await-task-action/compare/v4.0.0...v4.0.1) (2026-04-14)
 
 
