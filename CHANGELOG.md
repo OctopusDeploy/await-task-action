@@ -1,5 +1,14 @@
 # Changelog
 
+## [4.0.3](https://github.com/OctopusDeploy/await-task-action/compare/v4.0.2...v4.0.3) (2026-07-22)
+
+
+### Bug Fixes
+
+* **deps:** bump @octopusdeploy/api-client to 3.11.5 ([#326](https://github.com/OctopusDeploy/await-task-action/issues/326)) ([1cbfba7](https://github.com/OctopusDeploy/await-task-action/commit/1cbfba72925d6187c49539e5a2744e35e46104a2))
+* **deps:** bump @octopusdeploy/api-client to 3.11.6 ([#332](https://github.com/OctopusDeploy/await-task-action/issues/332)) ([e9c23a0](https://github.com/OctopusDeploy/await-task-action/commit/e9c23a0d3bf490ca7abe55e4e78034259cdc37a5))
+* **deps:** update js-yaml to resolve DoS advisory ([#331](https://github.com/OctopusDeploy/await-task-action/issues/331)) ([3e87249](https://github.com/OctopusDeploy/await-task-action/commit/3e87249572ed11e27fd7cbe8e8181a2148c266e2))
+
 ## [4.0.2](https://github.com/OctopusDeploy/await-task-action/compare/v4.0.1...v4.0.2) (2026-06-08)
 
 
