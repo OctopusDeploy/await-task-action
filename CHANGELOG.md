@@ -1,5 +1,13 @@
 # Changelog
 
+## [4.0.4](https://github.com/OctopusDeploy/await-task-action/compare/v4.0.3...v4.0.4) (2026-07-24)
+
+
+### Bug Fixes
+
+* **deps:** bump brace-expansion to resolve DoS advisory ([#333](https://github.com/OctopusDeploy/await-task-action/issues/333)) ([daf8c31](https://github.com/OctopusDeploy/await-task-action/commit/daf8c31b4690cc2e1ed8249a21a2316de6f3b403))
+* **deps:** resolve remaining npm audit advisories ([#335](https://github.com/OctopusDeploy/await-task-action/issues/335)) ([5a4be68](https://github.com/OctopusDeploy/await-task-action/commit/5a4be68046d0994ad9ec6e6503c89bc449cda840))
+
 ## [4.0.3](https://github.com/OctopusDeploy/await-task-action/compare/v4.0.2...v4.0.3) (2026-07-22)
 
 
