@@ -21,6 +21,7 @@ module.exports = {
   branchPrefix: 'renovate/',
   platform: 'github',
   repositories: ['OctopusDeploy/await-task-action'],
+  labels: ['dependencies'],
   packageRules: [
     {
       matchDatasources: ['npm'],
