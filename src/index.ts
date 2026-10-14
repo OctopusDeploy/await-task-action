@@ -1,8 +1,8 @@
 import { getInputParameters } from './input-parameters'
-import { debug, info, warning, error, setFailed, setOutput, isDebug } from '@actions/core'
-import { writeFileSync } from 'fs'
+import { debug, info, warning, error, setFailed, setOutput, isDebug, summary } from '@actions/core'
 import { Client, ClientConfiguration, Logger, TaskState } from '@octopusdeploy/api-client'
 import { waitForTask } from './api-wrapper'
+import { buildStepSummary } from './summary'
 
 // GitHub actions  entrypoint
 ;(async (): Promise<void> => {
@@ -36,18 +36,13 @@ import { waitForTask } from './api-wrapper'
 
     const client = await Client.create(config)
 
-    const taskState = await waitForTask(client, parameters)
+    const { state: taskState, task, taskUrl } = await waitForTask(client, parameters)
 
     setOutput('task_state', taskState)
+    info(`🐙 View the task log in Octopus Deploy: ${taskUrl}`)
 
-    const stepSummaryFile = process.env.GITHUB_STEP_SUMMARY
-    if (stepSummaryFile) {
-      writeFileSync(
-        stepSummaryFile,
-        `🐙 Octopus Deploy task ${
-          taskState === TaskState.Success ? 'completed successfully' : 'did not complete successfully'
-        }.`
-      )
+    if (process.env.GITHUB_STEP_SUMMARY) {
+      await summary.addRaw(buildStepSummary(parameters.serverTaskId, taskUrl, task)).write()
     }
 
     if (taskState !== TaskState.Success) {

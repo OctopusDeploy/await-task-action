@@ -98,6 +98,10 @@ steps:
 | :----------- | :-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `task_state` | The final [TaskState](https://github.com/OctopusDeploy/api-client.ts/blob/main/src/features/serverTasks/taskState.ts) (Canceled, Failed, Success, or TimedOut) returned from Octopus, or undefined if Octopus couldn't be contacted to retrieve the state |
 
+## 📝 Job summary
+
+When the task finishes, the action adds a [job summary](https://docs.github.com/en/actions/using-workflows/workflow-commands-for-github-actions#adding-a-job-summary) to the workflow run. It shows the task description, final state and duration, any error message from Octopus, and a link to the task log in Octopus Deploy. The link to the task log is also written to the action's log output.
+
 ## 🤝 Contributions
 
 Contributions are welcome! :heart: Please read our [Contributing Guide](.github/CONTRIBUTING.md) for information about how to get involved in this project.

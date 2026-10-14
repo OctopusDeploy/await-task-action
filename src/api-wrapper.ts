@@ -6,11 +6,20 @@ export interface DeploymentResult {
   environmentName: string
 }
 
-export async function waitForTask(client: Client, parameters: InputParameters): Promise<TaskState | undefined> {
+export interface TaskResult {
+  state: TaskState | undefined
+  task: ServerTask | undefined
+  taskUrl: string
+}
+
+export function getTaskUrl(server: string, spaceId: string, serverTaskId: string): string {
+  return `${server.replace(/\/+$/, '')}/app#/${spaceId}/tasks/${serverTaskId}`
+}
+
+export async function waitForTask(client: Client, parameters: InputParameters): Promise<TaskResult> {
   const spaceId = await resolveSpaceId(client, parameters.space)
-  client.info(
-    `🐙 waiting for task ${parameters.server}/app#/${spaceId}/tasks/${parameters.serverTaskId} in Octopus Deploy...`
-  )
+  const taskUrl = getTaskUrl(parameters.server, spaceId, parameters.serverTaskId)
+  client.info(`🐙 waiting for task ${taskUrl} in Octopus Deploy...`)
 
   const waiter = new ServerTaskWaiter(client, parameters.space)
   const serverTask = await waiter.waitForServerTaskToComplete(
@@ -25,5 +34,5 @@ export async function waitForTask(client: Client, parameters: InputParameters): 
     parameters.cancelOnTimeout
   )
 
-  return serverTask?.State
+  return { state: serverTask?.State, task: serverTask, taskUrl }
 }

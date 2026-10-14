@@ -227,10 +227,11 @@ describe('integration tests', () => {
     const space = (await spaceRepository.list({ partialName: spaceName })).Items[0]
 
     // The first release in the project, so it should always have 0.0.1
-    expect(result).toBe(TaskState.Success)
-    expect(output.getAllMessages()).toContain(
-      `[INFO] 🐙 waiting for task ${standardInputParameters.server}/app#/${space.Id}/tasks/${standardInputParameters.serverTaskId} in Octopus Deploy...`
+    expect(result.state).toBe(TaskState.Success)
+    expect(result.taskUrl).toBe(
+      `${standardInputParameters.server}/app#/${space.Id}/tasks/${standardInputParameters.serverTaskId}`
     )
+    expect(output.getAllMessages()).toContain(`[INFO] 🐙 waiting for task ${result.taskUrl} in Octopus Deploy...`)
 
     // re-queue another deployment to the same environment, which the self test is going to wait for via localServerTaskId
     serverTaskId = await deployReleaseForTest(client, releaseNumber)
