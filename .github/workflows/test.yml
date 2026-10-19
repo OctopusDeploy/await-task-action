@@ -52,7 +52,7 @@ jobs:
       deployment_results: ${{ steps.self_test.outputs.deployment_results }}
 
     steps:
-    - uses: actions/checkout@v6
+    - uses: actions/checkout@v7
 
     - name: Setup node 24
       uses: actions/setup-node@v6
