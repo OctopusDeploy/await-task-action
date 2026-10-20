@@ -1,5 +1,12 @@
 # Changelog
 
+## [4.0.7](https://github.com/OctopusDeploy/await-task-action/compare/v4.0.6...v4.0.7) (2026-10-20)
+
+
+### Bug Fixes
+
+* **deps:** resolve npm audit advisories ([#367](https://github.com/OctopusDeploy/await-task-action/issues/367)) ([ab171b6](https://github.com/OctopusDeploy/await-task-action/commit/ab171b6c78593401678357b1055992dd0f3e370e))
+
 ## [4.0.6](https://github.com/OctopusDeploy/await-task-action/compare/v4.0.5...v4.0.6) (2026-10-05)
 
 
