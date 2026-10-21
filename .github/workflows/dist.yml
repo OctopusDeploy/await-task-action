@@ -12,7 +12,7 @@ jobs:
           token: ${{ secrets.DEVEX_BOT_TOKEN }}
 
       - name: Setup node 24
-        uses: actions/setup-node@v6
+        uses: actions/setup-node@v7
         with:
           node-version: 24.11.1
 
