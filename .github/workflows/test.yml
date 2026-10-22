@@ -52,10 +52,10 @@ jobs:
       deployment_results: ${{ steps.self_test.outputs.deployment_results }}
 
     steps:
-    - uses: actions/checkout@v7
+    - uses: actions/checkout@v7.0.1
 
     - name: Setup node 24
-      uses: actions/setup-node@v7
+      uses: actions/setup-node@v7.1.0
       with:
         node-version: 24.11.1
 
